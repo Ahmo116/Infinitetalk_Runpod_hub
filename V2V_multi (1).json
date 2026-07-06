@@ -45,7 +45,7 @@
   },
   "128": {
     "inputs": {
-      "steps": 6,
+      "steps": 4,
       "cfg": 1.0000000000000002,
       "shift": 11.000000000000002,
       "seed": 2,
@@ -55,7 +55,7 @@
       "denoise_strength": 1,
       "batched_cfg": false,
       "rope_function": "comfy",
-      "start_step": 0,
+      "start_step": 2,
       "end_step": -1,
       "add_noise_to_samples": true,
       "model": [
@@ -68,6 +68,10 @@
       ],
       "text_embeds": [
         "241",
+        0
+      ],
+      "samples": [
+        "229",
         0
       ],
       "multitalk_embeds": [
@@ -114,7 +118,10 @@
   },
   "131": {
     "inputs": {
-      "frame_rate": 25,
+      "frame_rate": [
+        "307",
+        0
+      ],
       "loop_count": 0,
       "filename_prefix": "WanVideo2_1_InfiniteTalk",
       "format": "video/h264-mp4",
@@ -125,7 +132,7 @@
       "pingpong": false,
       "save_output": true,
       "images": [
-        "130",
+        "301",
         0
       ],
       "audio": [
@@ -232,8 +239,11 @@
         "270",
         0
       ],
-      "fps": 25,
-      "audio_scale": 1,
+      "fps": [
+        "307",
+        0
+      ],
+      "audio_scale": 1.5,
       "audio_cfg_scale": 1,
       "multi_audio_type": "para",
       "wav2vec_model": [
@@ -241,17 +251,102 @@
         0
       ],
       "audio_1": [
-        "302",
+        "304",
         0
       ],
       "audio_2": [
-        "306",
+        "314",
         0
       ]
     },
     "class_type": "MultiTalkWav2VecEmbeds",
     "_meta": {
       "title": "Multi/InfiniteTalk Wav2vec2 Embeds"
+    }
+  },
+  "228": {
+    "inputs": {
+      "video": "wan22_result_fxxhqqo9lqe.mp4",
+      "force_rate": 0,
+      "custom_width": [
+        "245",
+        0
+      ],
+      "custom_height": [
+        "246",
+        0
+      ],
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "Wan"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "229": {
+    "inputs": {
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128,
+      "noise_aug_strength": 0,
+      "latent_strength": 1,
+      "vae": [
+        "129",
+        0
+      ],
+      "image": [
+        "230",
+        0
+      ]
+    },
+    "class_type": "WanVideoEncode",
+    "_meta": {
+      "title": "WanVideo Encode"
+    }
+  },
+  "230": {
+    "inputs": {
+      "width": [
+        "245",
+        0
+      ],
+      "height": [
+        "246",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16,
+      "device": "cpu",
+      "image": [
+        "228",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "231": {
+    "inputs": {
+      "start_index": 0,
+      "num_frames": 1,
+      "images": [
+        "230",
+        0
+      ]
+    },
+    "class_type": "GetImageRangeFromBatch",
+    "_meta": {
+      "title": "Get Image or Mask Range From Batch"
     }
   },
   "237": {
@@ -290,7 +385,7 @@
     "inputs": {
       "model_name": "umt5-xxl-enc-fp8_e4m3fn.safetensors",
       "precision": "bf16",
-      "positive_prompt": "a man is talking",
+      "positive_prompt": "a two person talking",
       "negative_prompt": "bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
       "quantization": "fp8_e4m3fn",
       "use_disk_cache": false,
@@ -328,45 +423,10 @@
       "title": "Max frames"
     }
   },
-  "281": {
-    "inputs": {
-      "width": [
-        "245",
-        0
-      ],
-      "height": [
-        "246",
-        0
-      ],
-      "upscale_method": "lanczos",
-      "keep_proportion": "crop",
-      "pad_color": "0, 0, 0",
-      "crop_position": "center",
-      "divisible_by": 16,
-      "device": "cpu",
-      "image": [
-        "284",
-        0
-      ]
-    },
-    "class_type": "ImageResizeKJv2",
-    "_meta": {
-      "title": "Resize Image v2"
-    }
-  },
-  "284": {
-    "inputs": {
-      "image": "Gemini_image.jpg"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "이미지 로드"
-    }
-  },
   "291": {
     "inputs": {
       "image": [
-        "281",
+        "231",
         0
       ]
     },
@@ -377,7 +437,7 @@
   },
   "293": {
     "inputs": {
-      "preview": "443",
+      "preview": "284",
       "source": [
         "194",
         2
@@ -388,18 +448,56 @@
       "title": "미리보기 아무거나"
     }
   },
+  "299": {
+    "inputs": {
+      "inputcount": 2,
+      "direction": "left",
+      "match_image_size": false,
+      "Update inputs": null,
+      "image_1": [
+        "301",
+        0
+      ],
+      "image_2": [
+        "230",
+        0
+      ]
+    },
+    "class_type": "ImageConcatMulti",
+    "_meta": {
+      "title": "Image Concatenate Multi"
+    }
+  },
   "300": {
     "inputs": {
-      "model": "wav2vec2-chinese-base_fp16.safetensors",
-      "base_precision": "fp16",
-      "load_device": "main_device"
+      "image": [
+        "130",
+        0
+      ]
     },
-    "class_type": "Wav2VecModelLoader",
+    "class_type": "GetImageSizeAndCount",
     "_meta": {
-      "title": "Wav2vec2 Model Loader"
+      "title": "Get Image Size & Count"
     }
   },
   "301": {
+    "inputs": {
+      "start_index": 0,
+      "num_frames": [
+        "194",
+        2
+      ],
+      "images": [
+        "300",
+        0
+      ]
+    },
+    "class_type": "GetImageRangeFromBatch",
+    "_meta": {
+      "title": "Get Image or Mask Range From Batch"
+    }
+  },
+  "303": {
     "inputs": {
       "model_name": "MelBandRoformer_fp16.safetensors"
     },
@@ -408,10 +506,10 @@
       "title": "Mel-Band RoFormer Model Loader"
     }
   },
-  "302": {
+  "304": {
     "inputs": {
       "model": [
-        "301",
+        "303",
         0
       ],
       "audio": [
@@ -426,21 +524,28 @@
   },
   "306": {
     "inputs": {
-      "model": [
-        "301",
-        0
-      ],
-      "audio": [
-        "307",
-        0
-      ]
+      "model": "wav2vec2-chinese-base_fp16.safetensors",
+      "base_precision": "fp16",
+      "load_device": "main_device"
     },
-    "class_type": "MelBandRoFormerSampler",
+    "class_type": "Wav2VecModelLoader",
     "_meta": {
-      "title": "Mel-Band RoFormer Sampler"
+      "title": "Wav2vec2 Model Loader"
     }
   },
   "307": {
+    "inputs": {
+      "video_info": [
+        "228",
+        3
+      ]
+    },
+    "class_type": "VHS_VideoInfo",
+    "_meta": {
+      "title": "Video Info 🎥🅥🅗🅢"
+    }
+  },
+  "313": {
     "inputs": {
       "audio": "woman (1).wav",
       "audioUI": ""
@@ -448,6 +553,22 @@
     "class_type": "LoadAudio",
     "_meta": {
       "title": "오디오 로드"
+    }
+  },
+  "314": {
+    "inputs": {
+      "model": [
+        "303",
+        0
+      ],
+      "audio": [
+        "313",
+        0
+      ]
+    },
+    "class_type": "MelBandRoFormerSampler",
+    "_meta": {
+      "title": "Mel-Band RoFormer Sampler"
     }
   }
 }
