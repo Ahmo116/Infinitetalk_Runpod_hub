@@ -11,39 +11,48 @@ WORKDIR /
 
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     cd /ComfyUI && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/Comfy-Org/ComfyUI-Manager.git && \
     cd ComfyUI-Manager && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/city96/ComfyUI-GGUF && \
     cd ComfyUI-GGUF && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/kijai/ComfyUI-KJNodes && \
     cd ComfyUI-KJNodes && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite && \
     cd ComfyUI-VideoHelperSuite && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
     
 RUN cd /ComfyUI/custom_nodes && \
-    git clone https://github.com/orssorbit/ComfyUI-wanBlockswap
+    git clone https://github.com/orssorbit/ComfyUI-wanBlockswap && \
+    cd ComfyUI-wanBlockswap && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/kijai/ComfyUI-MelBandRoFormer && \
     cd ComfyUI-MelBandRoFormer && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/kijai/ComfyUI-WanVideoWrapper && \
     cd ComfyUI-WanVideoWrapper && \
+    git checkout "$(git rev-list -1 --before='2026-03-10' HEAD)" 2>/dev/null || echo skip-pin && \
     pip install -r requirements.txt
 
 

@@ -139,9 +139,10 @@ def queue_prompt(prompt, input_type="image", person_count="single"):
         logger.info(f"프롬프트 전송 성공: {result}")
         return result
     except urllib.error.HTTPError as e:
+        _body = e.read().decode('utf-8')
         logger.error(f"HTTP 에러 발생: {e.code} - {e.reason}")
-        logger.error(f"응답 내용: {e.read().decode('utf-8')}")
-        raise
+        logger.error(f"응답 내용: {_body}")
+        raise Exception(f"ComfyUI /prompt {e.code}: {_body}")
     except Exception as e:
         logger.error(f"프롬프트 전송 중 오류: {e}")
         raise
